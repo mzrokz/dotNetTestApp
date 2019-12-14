@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestApp.Models;
 
 namespace TestApp.DAL
 {
@@ -18,20 +19,22 @@ namespace TestApp.DAL
             return ds;
         }
 
-        public List<Player> GetPersonsVizReader()
+        public List<Person> GetPersonsVizReader()
         {
-            List<Player> players = new List<Player>();
+            List<Person> lstPersons = new List<Person>();
 
-            string command = "SELECT TOP (20000) [Id],[speed],[color] FROM [test].[dbo].Players";
+            var sql = "Select * from Person.Person";
 
             var context = new TestContext();
-            var dr = context.ExecuteReader(command);
+            var dr = context.ExecuteReader(sql);
             while (dr.Read())
             {
-                players.Add(new Player((int)dr["id"], (int)dr["speed"], (string)dr["color"]));
+                var oPerson = new Person();
+                oPerson.BusinessEntityID = (int)dr["BusinessEntityID"];
+                lstPersons.Add(oPerson);
             }
             dr.Dispose();
-            return players;
+            return lstPersons;
         }
     }
 }
