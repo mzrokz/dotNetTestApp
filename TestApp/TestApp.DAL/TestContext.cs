@@ -117,7 +117,7 @@ namespace TestApp.DAL
             }
             finally
             {
-                sqlConnection.Close();
+                //sqlConnection.Close();
             }
             return dr;
         }
