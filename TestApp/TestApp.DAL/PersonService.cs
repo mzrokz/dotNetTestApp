@@ -30,7 +30,7 @@ namespace TestApp.DAL
             while (dr.Read())
             {
                 var oPerson = new Person();
-                oPerson.BusinessEntityID = (int)dr["BusinessEntityID"];
+                oPerson.BusinessEntityID = dr["BusinessEntityID"] != DBNull.Value ? (int)dr["BusinessEntityID"] : 0;
                 lstPersons.Add(oPerson);
             }
             dr.Dispose();
