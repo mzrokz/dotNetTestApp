@@ -99,7 +99,28 @@ namespace TestApp.DAL
             return rowAffected;
         }
 
-        //executereader
+        public SqlDataReader ExecuteReader(string commandName)
+        {
+            SqlDataReader dr;
+            try
+            {
+                sqlConnection = new SqlConnection(cConnectionstring);
+                sqlConnection.Open();
+                sqlCommand = new SqlCommand(commandName, sqlConnection);
+                sqlCommand.CommandType = System.Data.CommandType.Text;
+
+                dr = sqlCommand.ExecuteReader();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+            return dr;
+        }
 
         public void Dispose()
         {

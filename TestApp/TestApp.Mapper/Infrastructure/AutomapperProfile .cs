@@ -9,7 +9,7 @@ using TestApp.Models;
 
 namespace TestApp.Mapper.Infrastructure
 {
-    public class AutoMapperProfile : AutoMapper.Profile
+    public class AutoMapperProfile : Profile
     {
         public static MapperConfiguration Config;
         //public static Mapper Mp;

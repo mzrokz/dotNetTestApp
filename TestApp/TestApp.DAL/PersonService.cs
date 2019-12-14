@@ -18,26 +18,20 @@ namespace TestApp.DAL
             return ds;
         }
 
-        //public List<Person> GetPersonsVizReader()
-        //{
+        public List<Player> GetPersonsVizReader()
+        {
+            List<Player> players = new List<Player>();
 
-        //    List<Player> players = new List<Player>();
-        //    using (var conn = new SqlConnection(ConnectionString))
-        //    {
-        //        SqlCommand command = new SqlCommand("SELECT TOP (20000) [Id],[speed],[color] FROM [test].[dbo].Players", conn);
+            string command = "SELECT TOP (20000) [Id],[speed],[color] FROM [test].[dbo].Players";
 
-        //        conn.Open();
-
-        //        SqlDataReader rdr = command.ExecuteReader();
-        //        while (rdr.Read())
-        //        {
-        //            Console.WriteLine(rdr["id"] + " " + rdr["speed"] + " " + rdr["color"]);
-        //            players.Add(new Player((int)rdr["id"], (int)rdr["speed"], (string)rdr["color"]));
-        //        }
-        //        rdr.Dispose();
-        //        command.Dispose();
-        //    }
-        //    return players;
-        //}
+            var context = new TestContext();
+            var dr = context.ExecuteReader(command);
+            while (dr.Read())
+            {
+                players.Add(new Player((int)dr["id"], (int)dr["speed"], (string)dr["color"]));
+            }
+            dr.Dispose();
+            return players;
+        }
     }
 }
