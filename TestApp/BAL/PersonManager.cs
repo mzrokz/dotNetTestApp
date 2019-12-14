@@ -19,6 +19,10 @@ namespace BAL
 
             DataNamesMapper<Person> mapper = new DataNamesMapper<Person>();
             List<Person> persons = mapper.Map(ds.Tables[0]).ToList();
+
+
+
+
             return persons;
         }
     }

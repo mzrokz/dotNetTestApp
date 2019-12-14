@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace TestApp.DAL
 {
-    public class TestContext
+    public class TestContext : IDisposable
     {
         #region Variables 
 
-        SqlConnection sqlConnection = null;
+        public SqlConnection sqlConnection = null;
         SqlCommand sqlCommand = null;
         public string cConnectionstring = ConfigurationManager.ConnectionStrings["AdventureWorks"].ToString();
         #endregion
@@ -97,6 +97,13 @@ namespace TestApp.DAL
                 sqlConnection.Close();
             }
             return rowAffected;
+        }
+
+        //executereader
+
+        public void Dispose()
+        {
+
         }
     }
 }
